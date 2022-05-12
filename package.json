@@ -9,10 +9,10 @@
   "author": "Nick O'SUllivan <nbaosullivan@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@contentful/rich-text-plain-text-renderer": "^14.1.1",
+    "@contentful/rich-text-plain-text-renderer": "^15.12.0",
     "@types/moment": "^2.13.0",
     "moment": "^2.27.0",
-    "reading-time": "^1.2.0"
+    "reading-time": "^1.5.0"
   },
   "keywords": [
     "gatsby",
