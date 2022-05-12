@@ -1,15 +1,18 @@
 const contentfulRenderer = require('@contentful/rich-text-plain-text-renderer');
 const readingTime = require('reading-time');
 
-exports.onCreateNode = async ({ node, loadNodeContent, actions }) => {
-  const { internal } = node;
-  const { owner, mediaType } = internal;
-  if (mediaType !== 'text/richtext' || owner !== 'gatsby-source-contentful') {
-    return;
-  }
-  const doc = JSON.parse(await loadNodeContent(node));
+exports.onCreateNode = async ({ node, actions }) => {
+  const { internal, body } = node;
+  const { owner, type } = internal;
+  const { createNodeField } = actions;
 
-  const text = contentfulRenderer.documentToPlainTextString(doc);
+  if (type !== 'ContentfulBlogPost' || owner !== 'gatsby-source-contentful') {
+    return;
+  };
+
+  const { raw } = body;
+  const text = contentfulRenderer.documentToPlainTextString(JSON.parse(raw));
   const result = readingTime(text);
-  actions.createNodeField({ node, name: 'readingTime', value: result });
+  
+  createNodeField({ node, name: 'readingTime', value: result });
 };

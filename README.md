@@ -23,19 +23,16 @@ yarn add gatsby-plugin-readingtime-contentful
 
 ### Example query
 
-Where `content` is a rich text field.
-
 ```jsx
 export const query = graphql`
-query MagazineArticles {
-  allContentfulArticle{
-    edges {
-      node {
+  query MagazineArticles {
+    allContentfulBlogPost{
+      nodes {
         title
         locale: node_locale
         createdAt
-        content {
-          json
+        body {
+          raw
           fields {
             readingTime {
               text
@@ -48,8 +45,6 @@ query MagazineArticles {
       }
     }
   }
-}
-
 `;
 ```
 
